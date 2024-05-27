@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import Description from "./components/Description/Description";
+import "./App.css";
+import Feedback from "./components/Feedback/Feedback";
+import Options from "./components/Options/Options";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const Reviews = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
+  const [count, setCount] = useState(Reviews);
+  useEffect(() => {
+    window.localStorage.setItem("saved-clicks", count);
+  }, [count]);
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Description />
+        <Options clickReviews={count} setCount={setCount} />
+        <Feedback typesReviews={count} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
