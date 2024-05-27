@@ -1,7 +1,10 @@
 import React from "react";
 
 const Feedback = ({ typesReviews }) => {
+  const localCount = window.localStorage.getItem("saveCount");
   if (
+    // !localCount
+    //   тут можна зробити активним 6 рядок та в файлі APP 14 рядок, закоментувати 8-10 рядок в цьому файлі - це як інший спосіб, незнаю  як більш правильно
     typesReviews.good === 0 &&
     typesReviews.neutral === 0 &&
     typesReviews.bad === 0

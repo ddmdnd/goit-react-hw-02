@@ -6,7 +6,9 @@ const Options = ({ clickReviews, setCount }) => {
     setCount({ ...clickReviews, [value]: click + 1 });
   };
   const resetOptions = () => {
+    window.localStorage.removeItem("saveCount");
     setCount({ good: 0, neutral: 0, bad: 0 });
+
     return (<Options />), (<Feedback />);
   };
   if (

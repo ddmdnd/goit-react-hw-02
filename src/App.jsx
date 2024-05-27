@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Description from "./components/Description/Description";
 import "./App.css";
 import Feedback from "./components/Feedback/Feedback";
@@ -10,9 +10,18 @@ function App() {
     neutral: 0,
     bad: 0,
   };
-  const [count, setCount] = useState(Reviews);
+  const [count, setCount] = useState(() => {
+    // window.localStorage.removeItem("saveCount");
+    const localCount = window.localStorage.getItem("saveCount");
+    console.log(JSON.parse(localCount));
+    if (JSON.parse(localCount) != null) {
+      return JSON.parse(localCount);
+    }
+    return Reviews;
+  });
+  console.log({ count });
   useEffect(() => {
-    window.localStorage.setItem("saved-clicks", count);
+    window.localStorage.setItem("saveCount", JSON.stringify(count));
   }, [count]);
 
   return (
