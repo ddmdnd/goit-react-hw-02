@@ -11,7 +11,16 @@ function App() {
     neutral: 0,
     bad: 0,
   };
-  const [count, setCount] = useState(Reviews);
+  const [count, setCount] = useState(() => {
+    const localCount = window.localStorage.getItem("saveCount");
+    if (JSON.parse(localCount) != null) {
+      return JSON.parse(localCount);
+    }
+    return Reviews;
+  });
+  useEffect(() => {
+    window.localStorage.setItem("saveCount", JSON.stringify(count));
+  }, [count]);
   const updateFeedback = (feedbackType) => {
     if (feedbackType === "reset") {
       setCount(Reviews);
