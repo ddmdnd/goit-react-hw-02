@@ -1,12 +1,6 @@
 import React from "react";
 
-const Feedback = ({ typesReviews }) => {
-  const totalFeedback =
-    typesReviews.good + typesReviews.neutral + typesReviews.bad;
-  const totalFeedbeckPercentage = Math.round(
-    (typesReviews.good / totalFeedback) * 100
-  );
-
+const Feedback = ({ typesReviews, totalFB, totalFeFBPercentage }) => {
   return (
     <div>
       <p>
@@ -19,10 +13,10 @@ const Feedback = ({ typesReviews }) => {
         Bad:<span>{typesReviews.bad}</span>
       </p>
       <p>
-        Total:<span>{totalFeedback}</span>
+        Total:<span>{totalFB}</span>
       </p>
       <p>
-        Positive:<span>{totalFeedbeckPercentage}%</span>
+        Positive:<span>{totalFeFBPercentage}%</span>
       </p>
     </div>
   );

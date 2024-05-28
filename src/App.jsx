@@ -32,11 +32,20 @@ function App() {
     }
   };
   const totalFeedback = count.good + count.neutral + count.bad;
+  const totalFeedbeckPercentage = Math.round(
+    (count.good / totalFeedback) * 100
+  );
   const renderContent = () => {
     if (totalFeedback === 0) {
       return <Notification />;
     }
-    return <Feedback typesReviews={count} />;
+    return (
+      <Feedback
+        typesReviews={count}
+        totalFB={totalFeedback}
+        totalFeFBPercentage={totalFeedbeckPercentage}
+      />
+    );
   };
 
   return (
