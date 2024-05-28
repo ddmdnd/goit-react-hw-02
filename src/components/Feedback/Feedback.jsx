@@ -1,20 +1,12 @@
 import React from "react";
 
 const Feedback = ({ typesReviews }) => {
-  //   const localCount = window.localStorage.getItem("saveCount");
-  if (
-    // !localCount
-    //   тут можна зробити активним 4, 6 рядок та в файлі APP 14 рядок, закоментувати 8-10 рядок в цьому файлі - це як інший спосіб, незнаю  як більш правильно
-    typesReviews.good === 0 &&
-    typesReviews.neutral === 0 &&
-    typesReviews.bad === 0
-  ) {
-    return <p>No Feedback yet</p>;
-  }
-  const totalReviews =
+  const totalFeedback =
     typesReviews.good + typesReviews.neutral + typesReviews.bad;
-  const positivePercentage =
-    (totalReviews - typesReviews.bad) / (totalReviews / 100);
+  const totalFeedbeckPercentage = Math.round(
+    (typesReviews.good / totalFeedback) * 100
+  );
+
   return (
     <div>
       <p>
@@ -27,10 +19,10 @@ const Feedback = ({ typesReviews }) => {
         Bad:<span>{typesReviews.bad}</span>
       </p>
       <p>
-        Total:<span>{totalReviews}</span>
+        Total:<span>{totalFeedback}</span>
       </p>
       <p>
-        Positive:<span>{Math.round(positivePercentage)}%</span>
+        Positive:<span>{totalFeedbeckPercentage}%</span>
       </p>
     </div>
   );
